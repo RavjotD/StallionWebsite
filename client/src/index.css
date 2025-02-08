@@ -1,0 +1,308 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply px-4 sm:px-6 lg:px-8 mx-auto;
+    max-width: 100%;
+    @screen sm {
+      max-width: 640px;
+    }
+    @screen md {
+      max-width: 768px;
+    }
+    @screen lg {
+      max-width: 1024px;
+    }
+    @screen xl {
+      max-width: 1280px;
+    }
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  /* SVG Animations */
+  .animate-draw {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw 8s ease forwards infinite;
+  }
+
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Balloon float animation */
+  .animate-balloon {
+    transform-origin: center bottom;
+    animation: balloon 8s ease-in-out infinite;
+  }
+
+  @keyframes balloon {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-10px) rotate(3deg);
+    }
+    75% {
+      transform: translateY(-5px) rotate(-3deg);
+    }
+  }
+
+  /* Locker animation */
+  .animate-locker {
+    animation: locker 8s ease-in-out infinite;
+  }
+
+  @keyframes locker {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Button hover animation */
+  .btn-hover-effect {
+    @apply relative overflow-hidden transition-all duration-500;
+  }
+
+  .btn-hover-effect::after {
+    content: '';
+    @apply absolute inset-0 bg-current opacity-0 transform -translate-x-full transition-all duration-500;
+  }
+
+  .btn-hover-effect:hover::after {
+    @apply translate-x-0 opacity-20;
+  }
+
+  /* Dark mode button */
+  .btn-hover-effect.dark::after {
+    @apply bg-[#FFD700];
+  }
+
+  /* Light mode button */
+  .btn-hover-effect.light::after {
+    @apply bg-[#FFD700];
+  }
+
+  /* Feature card animations */
+  .feature-card {
+    @apply relative border-2 border-transparent transition-all duration-300;
+  }
+
+  .feature-card:hover {
+    @apply border-[#FFD700];
+  }
+
+  /* 3D Icon rotation animation */
+  .icon-3d-rotate {
+    transform-style: preserve-3d;
+    animation: rotate3d 12s infinite linear;
+    perspective: 1000px;
+  }
+
+  @keyframes rotate3d {
+    0% {
+      transform: rotateY(0deg) rotateX(0deg);
+    }
+    25% {
+      transform: rotateY(90deg) rotateX(0deg);
+    }
+    50% {
+      transform: rotateY(180deg) rotateX(0deg);
+    }
+    75% {
+      transform: rotateY(270deg) rotateX(0deg);
+    }
+    100% {
+      transform: rotateY(360deg) rotateX(0deg);
+    }
+  }
+
+    /* Navbar link animations */
+  .nav-link {
+    @apply relative text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-[#FFD700] after:transition-transform after:duration-300;
+  }
+
+  .nav-link:hover {
+    @apply text-[#FFD700] transition-colors duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply scale-x-100;
+  }
+
+    .nav-link.active {
+    @apply text-[#FFD700];
+  }
+
+  .nav-link.active::after {
+    @apply scale-x-100;
+  }
+  /* Stagger children animations */
+  .stagger-children > * {
+    @apply opacity-0;
+    animation: stagger-fade-in 0.5s ease-out forwards;
+  }
+
+  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes stagger-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  .hover\:pause:hover {
+    animation-play-state: paused;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .hover\:animate-float:hover {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Added button styles */
+  .button {
+    @apply bg-black text-white border-white;
+  }
+
+  /* Scroll-triggered animation base styles */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+    /* Stagger child animations */
+    .stagger-child {
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stagger-child.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+  /* Slide animations */
+  .slide-in-left {
+    transform: translateX(-50px);
+  }
+
+  .slide-in-right {
+    transform: translateX(50px);
+  }
+
+  .slide-in-left.visible,
+  .slide-in-right.visible {
+    transform: translateX(0);
+  }
+
+  /* Scale animations */
+  .scale-up {
+    transform: scale(0.95);
+  }
+
+  .scale-up.visible {
+    transform: scale(1);
+  }
+
+  /* Fade animations */
+  .fade-in {
+    opacity: 0;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+  }
+
+  /* 3D Card perspective */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+}
